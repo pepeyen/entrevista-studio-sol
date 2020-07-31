@@ -13,26 +13,35 @@ namespace ProvaTecnicaStudioSol
     {
         public static void Menu()
         {
+            Console.OutputEncoding = Encoding.Unicode;
+
             const int MAXMENUCHOICE = 2;
             const int MAXGUESS = 300;
-            bool isCloseMenu,isAnotherTry;
             int userInputMenu, userInputGuess;
-
-            isCloseMenu = false;
-            isAnotherTry = false;
-
-            Console.WriteLine("\nBem Vindo ao Qual é o número !");
-            Console.WriteLine("\n============MENU============");
-            Console.WriteLine("1 - Para acessar o Jogo");
-            Console.WriteLine("2 - Para encerrar a execução");
-            Console.WriteLine("============================");
-            Console.Write("\nInsira uma das opções acima: ");
-            userInputMenu = Int32.Parse(Console.ReadLine());
-
-            if (userInputMenu < 0 || userInputMenu > MAXMENUCHOICE)
+            do
             {
-                Console.WriteLine("Você inseriu: " + userInputMenu + " por favor insira um número de 0 a " + MAXMENUCHOICE);
-            }
+                Console.Clear();
+
+                Console.WriteLine("\nBem Vindo ao Qual é o número !\n");
+                Console.WriteLine("┏━━━━━━━━━━━━━MENU━━━━━━━━━━━━━┓");
+                Console.WriteLine("┃                              ┃");
+                Console.WriteLine("┃ 1 - Para acessar o Jogo      ┃");
+                Console.WriteLine("┃ 2 - Para encerrar a execução ┃");
+                Console.WriteLine("┃                              ┃");
+                Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                Console.Write("\nInsira uma das opções acima: ");
+
+                userInputMenu = Int32.Parse(Console.ReadLine());
+                if (userInputMenu < 0 || userInputMenu > MAXMENUCHOICE)
+                {
+                    Console.WriteLine("\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+                    Console.WriteLine("ERRO DETECTADO\n");
+                    Console.WriteLine("Você inseriu " + userInputMenu + " por favor insira um número de 0 a " + MAXMENUCHOICE );
+                    Console.Write("\nPressione qualquer tecla para continuar: ");
+                    Console.ReadKey();
+                }
+
+            } while (userInputMenu < 0 || userInputMenu > MAXMENUCHOICE);
 
             switch (userInputMenu)
             {
@@ -44,7 +53,7 @@ namespace ProvaTecnicaStudioSol
                         userInputGuess = Int32.Parse(Console.ReadLine());
                         if (userInputGuess < 0 || userInputGuess > MAXGUESS)
                         {
-                            Console.WriteLine("=======================================================");
+                            Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
                             Console.WriteLine("Você inseriu: " + userInputGuess + " por favor insira um número de 0 a " + MAXGUESS);
                             Console.WriteLine("\nPressione qualquer tecla para continuar: ");
                             Console.ReadKey();
@@ -74,9 +83,11 @@ namespace ProvaTecnicaStudioSol
                     {
                         using(HttpContent responseContent = response.Content)
                         {
-                            string json = await responseContent.ReadAsStringAsync();
+                            string responseJson = await responseContent.ReadAsStringAsync();
 
-                            ConvertJsonToNumber(json, ((int)response.StatusCode), userGuess);
+                            dynamic deserializedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(responseJson);
+
+                            PrintGuessAnswer(responseJson, ((int)response.StatusCode), userGuess);
                         }
                     }               
                 }
@@ -88,110 +99,201 @@ namespace ProvaTecnicaStudioSol
 
             Console.Write("\nPressione qualquer tecla para continuar: ");          
             Console.ReadLine();
+            Console.Clear();
             Menu();
         }
 
-        public static void ConvertJsonToNumber(string json, int responseStatus, int userGuess)
+        public static void PrintGuessAnswer(string responseJson, int responseStatus, int userGuess)
         {
-            int number;
-            string numbers;
-            bool isAError;
+            Console.Clear();
+
+            Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+            int toBeGuessed;
 
             if (responseStatus == 200)
             {
-                dynamic deserializedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+                dynamic deserializedJson = Newtonsoft.Json.JsonConvert.DeserializeObject(responseJson);
 
-                number = deserializedJson.value;
-                numbers = userGuess.ToString();
+                toBeGuessed = deserializedJson.value;
 
-                isAError = false;
+                if (userGuess >= toBeGuessed)
+                {
+                    if (userGuess > toBeGuessed)
+                        Console.WriteLine(" É maior");
+                    else
+                        Console.WriteLine(" Acertou! ＼(＾▽＾)／");
+                }
+                else
+                    Console.WriteLine(" É menor");
 
-                PrintUserResponse(numbers, isAError);
+                GenerateGuessAnswer(userGuess.ToString(), false);
             }
             else
             {
-                number = responseStatus;
-                numbers = number.ToString();
+                toBeGuessed = responseStatus;
 
-                isAError = true;
-                Console.WriteLine("ERROR");
-                PrintUserResponse(numbers, isAError);
+                Console.WriteLine(" ERRO");
+
+                GenerateGuessAnswer(toBeGuessed.ToString(), true);
             }
+            Console.WriteLine("\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         }
+        public static void GenerateGuessAnswer(string toBePrinted, bool isError){
+            string[,] displayArray = new string[3, 9];
 
-        public static void PrintUserResponse(string toBePrinted, bool isAError){
-            string[] ledDisplay = new string[3];
-            
-            for (int i = 0;i < toBePrinted.Length; i++)
+            for (int i = 0; i < displayArray.GetLength(0); i++)
             {
-                ledDisplay = GenerateLedDisplayNumber(toBePrinted[i]);
-                Console.WriteLine(ledDisplay[0]);
-                Console.WriteLine(ledDisplay[1]);
-                Console.WriteLine(ledDisplay[2]);
-            }
+                Console.WriteLine("");
+                int indexColumn = 0;
 
+                for (int j = 0; j < displayArray.GetLength(1); j++)
+                {
+                    if (indexColumn == 3)
+                        indexColumn = 0;
+
+                    if (j <= 2 && toBePrinted.Length >= 1)
+                        displayArray[i, j] = GenerateLedDisplayNumber(toBePrinted[0])[i, indexColumn];
+                    else if (j <= 5 && toBePrinted.Length >= 2)
+                        displayArray[i, j] = GenerateLedDisplayNumber(toBePrinted[1])[i, indexColumn];
+                    else if (j <= 8 && toBePrinted.Length >= 3)
+                        displayArray[i, j] = GenerateLedDisplayNumber(toBePrinted[2])[i, indexColumn];
+
+                    Console.Write(displayArray[i, j]);
+                    indexColumn++;
+                }
+            }
         }
-        public static string[] GenerateLedDisplayNumber(char userGuess)
+        public static string[,] GenerateLedDisplayNumber(char toBeDisplayed)
         {
-            string[] ledToDisplay = new string[3];
+            string[,] digit = new string[3, 3];
 
-            switch (userGuess)
+            switch (toBeDisplayed)
             {
-                case'0':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = "| | ";
-                    ledToDisplay[2] = "|_| ";
+                case '0':
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = "|";
+                    digit[1, 1] = " ";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = "|";
+                    digit[2, 1] = "_";
+                    digit[2, 2] = "|";
+
                     break;
                 case '1':
-                    ledToDisplay[0] = "    ";
-                    ledToDisplay[1] = "  | ";
-                    ledToDisplay[2] = "  | ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = " ";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = " ";
+                    digit[1, 1] = " ";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = " ";
+                    digit[2, 1] = " ";
+                    digit[2, 2] = "|";
+
                     break;
                 case '2':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = " _| ";
-                    ledToDisplay[2] = "|_  ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = " ";
+                    digit[1, 1] = "_";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = "|";
+                    digit[2, 1] = "_";
+                    digit[2, 2] = " ";
+
                     break;
                 case '3':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = " _| ";
-                    ledToDisplay[2] = " _| ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = " ";
+                    digit[1, 1] = "_";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = " ";
+                    digit[2, 1] = "_";
+                    digit[2, 2] = "|";
+
                     break;
                 case '4':
-                    ledToDisplay[0] = "    ";
-                    ledToDisplay[1] = "|_| ";
-                    ledToDisplay[2] = "  | ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = " ";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = "|";
+                    digit[1, 1] = "_";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = " ";
+                    digit[2, 1] = " ";
+                    digit[2, 2] = "|";
+
                     break;
                 case '5':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = "|_  ";
-                    ledToDisplay[2] = " _| ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = "|";
+                    digit[1, 1] = "_";
+                    digit[1, 2] = " ";
+                    digit[2, 0] = " ";
+                    digit[2, 1] = "_";
+                    digit[2, 2] = "|";
+
                     break;
                 case '6':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = "|_  ";
-                    ledToDisplay[2] = "|_| ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = "|";
+                    digit[1, 1] = "_";
+                    digit[1, 2] = " ";
+                    digit[2, 0] = "|";
+                    digit[2, 1] = "_";
+                    digit[2, 2] = "|";
+
                     break;
                 case '7':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = "  | ";
-                    ledToDisplay[2] = "  | ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = "|";
+                    digit[1, 1] = " ";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = " ";
+                    digit[2, 1] = " ";
+                    digit[2, 2] = "|";
+
                     break;
                 case '8':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = "|_| ";
-                    ledToDisplay[2] = "|_| ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = "|";
+                    digit[1, 1] = "_";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = "|";
+                    digit[2, 1] = "_";
+                    digit[2, 2] = "|";
+
                     break;
                 case '9':
-                    ledToDisplay[0] = " _  ";
-                    ledToDisplay[1] = "|_| ";
-                    ledToDisplay[2] = "  | ";
+                    digit[0, 0] = " ";
+                    digit[0, 1] = "_";
+                    digit[0, 2] = " ";
+                    digit[1, 0] = "|";
+                    digit[1, 1] = "_";
+                    digit[1, 2] = "|";
+                    digit[2, 0] = " ";
+                    digit[2, 1] = " ";
+                    digit[2, 2] = "|";
+
                     break;
                 default:
                     break;
             }
-
-            return ledToDisplay;
+            return digit;
         }
     }
 }

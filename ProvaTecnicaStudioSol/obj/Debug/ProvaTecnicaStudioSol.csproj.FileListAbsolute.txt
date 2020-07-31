@@ -18,3 +18,13 @@ D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaS
 D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csproj.CopyComplete
 D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.exe
 D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.pdb
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\ProvaTecnicaStudioSol.exe.config
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\ProvaTecnicaStudioSol.exe
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\ProvaTecnicaStudioSol.pdb
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csprojAssemblyReference.cache
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csproj.CoreCompileInputs.cache
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csproj.CopyComplete
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.exe
+C:\Users\Pepeyen\Desktop\Projects\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.pdb
