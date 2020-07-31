@@ -1,0 +1,10 @@
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\obj\Debug\GuessTheNumberGame.csprojAssemblyReference.cache
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\obj\Debug\GuessTheNumberGame.csproj.CoreCompileInputs.cache
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\bin\Debug\GuessTheNumberGame.exe.config
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\bin\Debug\GuessTheNumberGame.exe
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\bin\Debug\GuessTheNumberGame.pdb
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\obj\Debug\GuessTheNumberGame.csproj.CopyComplete
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\obj\Debug\GuessTheNumberGame.exe
+C:\Users\Pepeyen\source\repos\GuessTheNumberGame\obj\Debug\GuessTheNumberGame.pdb

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProvaTecnicaStudioSol")]
+[assembly: AssemblyTitle("GuessTheNumberGame")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProvaTecnicaStudioSol")]
+[assembly: AssemblyProduct("GuessTheNumberGame")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fb0ab63c-47d0-4245-8ad8-eac52ef47ce9")]
+[assembly: Guid("00e7d28a-5666-406a-b504-e1f952a3a48d")]
 
 // Version information for an assembly consists of the following four values:
 //

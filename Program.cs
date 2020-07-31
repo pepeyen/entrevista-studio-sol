@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProvaTecnicaStudioSol
+namespace GuessTheNumberGame
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Numbers.Menu();
+            GuessTheNumber.Menu();
         }
     }
 }
