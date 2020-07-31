@@ -8,3 +8,13 @@ C:\Users\Pepeyen\source\repos\ProvaTecnicaStudioSol\ProvaTecnicaStudioSol\obj\De
 C:\Users\Pepeyen\source\repos\ProvaTecnicaStudioSol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csproj.CopyComplete
 C:\Users\Pepeyen\source\repos\ProvaTecnicaStudioSol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.exe
 C:\Users\Pepeyen\source\repos\ProvaTecnicaStudioSol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.pdb
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\ProvaTecnicaStudioSol.exe.config
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\ProvaTecnicaStudioSol.exe
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\ProvaTecnicaStudioSol.pdb
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\Newtonsoft.Json.dll
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\bin\Debug\Newtonsoft.Json.xml
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csprojAssemblyReference.cache
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csproj.CoreCompileInputs.cache
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.csproj.CopyComplete
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.exe
+D:\Users\Isaac\Documents\entrevistaStudioSOl\entrevista-studio-sol\ProvaTecnicaStudioSol\obj\Debug\ProvaTecnicaStudioSol.pdb

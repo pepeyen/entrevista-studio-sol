@@ -18,56 +18,51 @@ namespace ProvaTecnicaStudioSol
             bool isCloseMenu,isAnotherTry;
             int userInputMenu, userInputGuess;
 
-            do
+            isCloseMenu = false;
+            isAnotherTry = false;
+
+            Console.WriteLine("\nBem Vindo ao Qual é o número !");
+            Console.WriteLine("\n============MENU============");
+            Console.WriteLine("1 - Para acessar o Jogo");
+            Console.WriteLine("2 - Para encerrar a execução");
+            Console.WriteLine("============================");
+            Console.Write("\nInsira uma das opções acima: ");
+            userInputMenu = Int32.Parse(Console.ReadLine());
+
+            if (userInputMenu < 0 || userInputMenu > MAXMENUCHOICE)
             {
-                isCloseMenu = false;
-                isAnotherTry = false;
+                Console.WriteLine("Você inseriu: " + userInputMenu + " por favor insira um número de 0 a " + MAXMENUCHOICE);
+            }
 
-                Console.WriteLine("Bem Vindo ao Qual é o número !");
-                Console.WriteLine("\n============MENU============");
-                Console.WriteLine("1 - Para acessar o Jogo");
-                Console.WriteLine("2 - Para encerrar a execução");
-                Console.WriteLine("============================");
-                Console.Write("\nInsira uma das opções acima: ");
-                userInputMenu = Int32.Parse(Console.ReadLine());
-
-                if (userInputMenu < 0 || userInputMenu > MAXMENUCHOICE)
-                {
-                    Console.WriteLine("Você inseriu: " + userInputMenu + " por favor insira um número de 0 a " + MAXMENUCHOICE);
-                }
-
-                switch (userInputMenu)
-                {
-                    case 1:
-                        do
+            switch (userInputMenu)
+            {
+                case 1:
+                    do
+                    {
+                        Console.Clear();
+                        Console.Write("Insira um número de 0 a " + MAXGUESS + ": ");
+                        userInputGuess = Int32.Parse(Console.ReadLine());
+                        if (userInputGuess < 0 || userInputGuess > MAXGUESS)
                         {
-                            Console.Clear();
-                            Console.Write("Insira um número de 0 a " + MAXGUESS + ": ");
-                            userInputGuess = Int32.Parse(Console.ReadLine());
-                            if (userInputGuess < 0 || userInputGuess > MAXGUESS)
-                            {
-                                Console.WriteLine("=======================================================");
-                                Console.WriteLine("Você inseriu: " + userInputGuess + " por favor insira um número de 0 a " + MAXGUESS);
-                                Console.Write("\nPressione qualquer tecla para continuar: ");
-                                Console.ReadKey();
-                            }
-                            else FetchNumber(userInputGuess);
+                            Console.WriteLine("=======================================================");
+                            Console.WriteLine("Você inseriu: " + userInputGuess + " por favor insira um número de 0 a " + MAXGUESS);
+                            Console.WriteLine("\nPressione qualquer tecla para continuar: ");
+                            Console.ReadKey();
+                        }
+                        else FetchNumber(userInputGuess).Wait();
 
-                        } while (userInputGuess < 0 || userInputGuess > MAXGUESS) ;
+                    } while (userInputGuess < 0 || userInputGuess > MAXGUESS) ;
 
-                        break;
-                    case 2:
-                        isCloseMenu = true;
+                    break;
+                case 2:
+                    Environment.Exit(0);
 
-                        break;
-                    default:
-                        break;
-                }
-
-            } while (isCloseMenu != true);
-
+                    break;
+                default:
+                    break;
+            }
         }
-        public async static void FetchNumber(int userGuess)
+        public async static Task FetchNumber(int userGuess)
         {
             string baseURL = "https://us-central1-ss-devops.cloudfunctions.net/rand?min=1&max=300";
 
@@ -91,8 +86,9 @@ namespace ProvaTecnicaStudioSol
                 Console.WriteLine(exception);
             }
 
-            Console.Write("\nPressione qualquer tecla para continuar: ");
-            Console.ReadKey();
+            Console.Write("\nPressione qualquer tecla para continuar: ");          
+            Console.ReadLine();
+            Menu();
         }
 
         public static void ConvertJsonToNumber(string json, int responseStatus, int userGuess)
@@ -142,54 +138,54 @@ namespace ProvaTecnicaStudioSol
             switch (userGuess)
             {
                 case'0':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = "| |";
-                    ledToDisplay[2] = "|_|";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = "| | ";
+                    ledToDisplay[2] = "|_| ";
                     break;
                 case '1':
-                    ledToDisplay[0] = "   ";
-                    ledToDisplay[1] = "  |";
-                    ledToDisplay[2] = "  |";
+                    ledToDisplay[0] = "    ";
+                    ledToDisplay[1] = "  | ";
+                    ledToDisplay[2] = "  | ";
                     break;
                 case '2':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = " _|";
-                    ledToDisplay[2] = "|_ ";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = " _| ";
+                    ledToDisplay[2] = "|_  ";
                     break;
                 case '3':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = " _|";
-                    ledToDisplay[2] = " _|";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = " _| ";
+                    ledToDisplay[2] = " _| ";
                     break;
                 case '4':
-                    ledToDisplay[0] = "   ";
-                    ledToDisplay[1] = "|_|";
-                    ledToDisplay[2] = "  |";
+                    ledToDisplay[0] = "    ";
+                    ledToDisplay[1] = "|_| ";
+                    ledToDisplay[2] = "  | ";
                     break;
                 case '5':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = "|_ ";
-                    ledToDisplay[2] = " _|";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = "|_  ";
+                    ledToDisplay[2] = " _| ";
                     break;
                 case '6':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = "|_ ";
-                    ledToDisplay[2] = "|_|";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = "|_  ";
+                    ledToDisplay[2] = "|_| ";
                     break;
                 case '7':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = "  |";
-                    ledToDisplay[2] = "  |";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = "  | ";
+                    ledToDisplay[2] = "  | ";
                     break;
                 case '8':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = "|_|";
-                    ledToDisplay[2] = "|_|";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = "|_| ";
+                    ledToDisplay[2] = "|_| ";
                     break;
                 case '9':
-                    ledToDisplay[0] = " _ ";
-                    ledToDisplay[1] = "|_|";
-                    ledToDisplay[2] = "  |";
+                    ledToDisplay[0] = " _  ";
+                    ledToDisplay[1] = "|_| ";
+                    ledToDisplay[2] = "  | ";
                     break;
                 default:
                     break;
